@@ -7,50 +7,84 @@
     <title>CHICO pic</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="./output.css">
-    <style>.b{fill:none;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;}</style>
+    <style>.b{fill:none;stroke-width:2.5;stroke:#ffffff;stroke-linecap:round;stroke-linejoin:round;}</style>
     
 </head>
 <body  class="bg-white text-gray-800 dark:bg-gray-800 dark:text-white behavior-smooth">
+    <!-- bouton pour revenir en haut -->
+    <button id="backToTopBtn" class="fixed bottom-4 right-4 z-50 p-1 md:p-2 text-xl text-white border-2 rounded-md cursor-pointer shadow-slate-800 bg-gray-600 dark:text-gray-800 dark:bg-white hover:bg-slate-900 hover:dark:bg-slate-900 hover:dark:text-white hover:border-gray-800 hover:dark:border-white">haut</button>
 
+    <!-- debut header -->
     <header id="Acceuil" class="flex flex-col gap-2">
 
+        <!-- debut nav -->
+        <nav id="nav" class="fixed top-0 left-0 w-full z-50 flex items-center justify-between lg:justify-around bg-gray-500 px-3 py-1 md:p-1 md:p-3">
 
-        <nav id="nav" class="fixed top-0 left-0 w-full z-50 flex items-center justify-between md:justify-around bg-gray-500 px-3 py-1 md:p-1 md:p-3">
-
+            <!-- logo -->
             <div id="logo" class="p-0 md:p-2 text-xl md:text-3xl italic font-serif font-bold text-white">CHICO <span class="text-amber-300">pic</span></div>
 
-            <ul class="hidden md:flex md:gap-1 md:gap-6 md:items-center">
-                <li><a class="text-sm md:text-md lg:text-lg text-white font-semibold px-2 pb-1 hover:bg-gray-700 hover:rounded-t-lg" href="#Acceuil">Acceuil</a></li>
-                <li><a class="text-sm md:text-md lg:text-lg text-white font-semibold px-2 pb-1  hover:bg-gray-700 hover:rounded-t-lg " href="#querypic">Feedback</a></li>
-                <li><a class="text-sm md:text-md lg:text-lg text-white font-semibold px-2 pb-1  hover:bg-gray-700 hover:rounded-t-lg " href="#scline">Scline Child</a></li>
-                <li><a class="text-sm md:text-md lg:text-lg text-white font-semibold px-2 pb-1  hover:bg-gray-700 hover:rounded-t-lg " href="#contact">Contact</a></li>
-                <li><a class="text-sm md:text-md lg:text-lg text-white font-semibold px-2 pb-1  hover:bg-gray-700 hover:rounded-t-lg " href="#propos">A Propos</a></li>
+            <!-- menu -->
+            <ul id="nav-item" class="hidden md:flex md:gap-1 md:gap-6 md:items-center">
+                <li><a class="text-sm md:text-md lg:text-lg text-white font-semibold lg:px-2 pb-1 hover:bg-gray-700 hover:rounded-t-lg" href="#Acceuil">Acceuil</a></li>
+                <li><a class="text-sm md:text-md lg:text-lg text-white font-semibold lg:px-2 pb-1  hover:bg-gray-700 hover:rounded-t-lg " href="#querypic">Feedback</a></li>
+                <li><a class="text-sm md:text-md lg:text-lg text-white font-semibold lg:px-2 pb-1  hover:bg-gray-700 hover:rounded-t-lg " href="#scline">Scline Child</a></li>
+                <li><a class="text-sm md:text-md lg:text-lg text-white font-semibold lg:px-2 pb-1  hover:bg-gray-700 hover:rounded-t-lg " href="#contact">Contact</a></li>
+                <li><a class="text-sm md:text-md lg:text-lg text-white font-semibold lg:px-2 pb-1  hover:bg-gray-700 hover:rounded-t-lg " href="#propos">A Propos</a></li>
             </ul>
+
+            <!-- div pour afficher le conteneur search lorsqu'on scrolle de 500 vers le bas -->
+            <div id="divBtn" class="hidden">
+                <div class="flex gap-1">
+
+                    <!-- bouton supprimer -->
+                    <svg id="divDelete"  class="stroke-white dark:stroke-gray-700 bg-gray-700 dark:bg-white px-2 py-1 rounded-full" stroke-width="2" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="35px" height="35px"><path d="M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 12.21875 10.78125 L 10.78125 12.21875 L 14.5625 16 L 10.78125 19.78125 L 12.21875 21.21875 L 16 17.4375 L 19.78125 21.21875 L 21.21875 19.78125 L 17.4375 16 L 21.21875 12.21875 L 19.78125 10.78125 L 16 14.5625 Z"/>
+                    </svg>
+
+                    <!-- bouton pour la recherche -->
+                    <svg id="divMobile" class="stroke-white dark:stroke-gray-700 bg-gray-700 dark:bg-white px-2 py-1 rounded-full" width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </div>
+
+                <!-- div input -->
+                <div id="divInput">
+                    <input class="w-[350px] lg:w-[600px] xl:w-[800px]  px-2 focus:outline-none text-sm text-white bg-transparent border-l-2 border-gray-300 font-semibold placeholder-white" type="text" id="inputFixedSearch" placeholder="Rechercher une image">
+                </div>
+            </div>
+
+            <!-- div pour mes icones dark-mode et search -->
             <div class="flex items-center gap-2 md-gap-6">
 
+                <!-- div pour afficher le conteneur search sur mobile -->
                 <div id="divBtnMobile" class="md:hidden">
                     <div class="flex gap-1">
 
-                        <svg id="divBtnDelete"  class="hidden stroke-white dark:stroke-gray-700 bg-gray-700 dark:bg-white px-2 py-1 rounded-full" stroke-width="2" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="35px" height="35px"><path d="M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 12.21875 10.78125 L 10.78125 12.21875 L 14.5625 16 L 10.78125 19.78125 L 12.21875 21.21875 L 16 17.4375 L 19.78125 21.21875 L 21.21875 19.78125 L 17.4375 16 L 21.21875 12.21875 L 19.78125 10.78125 L 16 14.5625 Z"/>
+                        <!-- bouton supprimer pour mobile -->
+                        <svg id="divBtnDelete"  class="hidden stroke-white dark:stroke-gray-700 bg-gray-700 dark:bg-white px-2 py-1 rounded-full w-8 h-8" stroke-width="2" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32"><path d="M 16 3 C 8.832031 3 3 8.832031 3 16 C 3 23.167969 8.832031 29 16 29 C 23.167969 29 29 23.167969 29 16 C 29 8.832031 23.167969 3 16 3 Z M 16 5 C 22.085938 5 27 9.914063 27 16 C 27 22.085938 22.085938 27 16 27 C 9.914063 27 5 22.085938 5 16 C 5 9.914063 9.914063 5 16 5 Z M 12.21875 10.78125 L 10.78125 12.21875 L 14.5625 16 L 10.78125 19.78125 L 12.21875 21.21875 L 16 17.4375 L 19.78125 21.21875 L 21.21875 19.78125 L 17.4375 16 L 21.21875 12.21875 L 19.78125 10.78125 L 16 14.5625 Z"/>
                         </svg>
 
-                        <svg id="btnMobile" class="stroke-white dark:stroke-gray-700 bg-gray-700 dark:bg-white px-2 py-1 rounded-full" width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <!-- au click afficher le -->
+                        <svg id="btnMobile" class="stroke-white dark:stroke-gray-700 bg-gray-700 dark:bg-white px-2 py-1 rounded-full w-8 h-8" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
                     </div>
+
+                    <!-- div input -->
                     <div id="divInputMobile" class="hidden">
-                        <input class="w-[250px] md:hidden px-2 py-2 focus:outline-none text-sm text-white bg-transparent font-semibold placeholder-gray-900 dark:placeholder-white" type="text" id="inputMobileSearch" placeholder="Rechercher une image">
+                        <input class="w-[250px] sm:w-[550px] md:hidden px-2 border-l-2 border-gray-300 focus:outline-none text-sm text-white bg-transparent font-semibold placeholder-gray-900 dark:placeholder-white" type="text" id="inputMobileSearch" placeholder="Rechercher une image">
                     </div>
                 </div>
 
+                <!-- icon pour authentification et se connecter avec son compte google au click -->
                 <a href="http://localhost:3000/auth/google">
                     <div id="gift" class="bg-gray-700 text-white dark:bg-white hover:dark:bg-gray-600 hover:dark:text-white dark:text-gray-700 rounded-full px-2 md:px-3 py-1 md:py-2 hover:text-white hover:bg-gray-600"><i class="fa-brands fa-google"></i></div>
                 </a>
                     
+                    <!-- div du dark-mode -->
                     <div id="dark-mode" class="dark:bg-white relative block transition-all duration-500 hover:dark:bg-gray-200 bg-gray-700 text-white p-1 md:p-2 rounded-full hover:bg-gray-600 hover:text-gray-100">
-                        <svg id="mode-dark" class="b" width="23px" height="23px" viewBox="0 0 48 48" id="a" xmlns="http://www.w3.org/2000/svg"><defs></defs><path class="b" d="M31.75,6.479c6.7339,3.8881,10.3177,11.5721,8.969,19.23-1.3496,7.6616-7.3484,13.6604-15.01,15.01-7.6579,1.3487-15.3419-2.2351-19.23-8.969"/><path class="b" d="M32.02,6.75c4.1858,7.2511,2.98,16.4095-2.94,22.33-5.9205,5.92-15.0789,7.1258-22.33,2.94"/><path class="b" d="M10,8v4"/><path class="b" d="M8,10h4"/><path class="b" d="M12,18v3"/><path class="b" d="M10.5,19.5h3"/><path class="b" d="M30.5,14v3"/><path class="b" d="M29,15.5h3"/><path class="b" d="M38.5,5.5v3"/><path class="b" d="M37,7h3"/><path class="b" d="M7.5,41h3"/><path class="b" d="M9,39.5v3"/><path class="b" d="M39.5,36h3"/><path class="b" d="M41,34.5l.02,3"/></svg>
+                        <svg id="mode-dark" class="b w-6 h-6" viewBox="0 0 48 48" id="a" xmlns="http://www.w3.org/2000/svg"><defs></defs><path class="b" d="M31.75,6.479c6.7339,3.8881,10.3177,11.5721,8.969,19.23-1.3496,7.6616-7.3484,13.6604-15.01,15.01-7.6579,1.3487-15.3419-2.2351-19.23-8.969"/><path class="b" d="M32.02,6.75c4.1858,7.2511,2.98,16.4095-2.94,22.33-5.9205,5.92-15.0789,7.1258-22.33,2.94"/><path class="b" d="M10,8v4"/><path class="b" d="M8,10h4"/><path class="b" d="M12,18v3"/><path class="b" d="M10.5,19.5h3"/><path class="b" d="M30.5,14v3"/><path class="b" d="M29,15.5h3"/><path class="b" d="M38.5,5.5v3"/><path class="b" d="M37,7h3"/><path class="b" d="M7.5,41h3"/><path class="b" d="M9,39.5v3"/><path class="b" d="M39.5,36h3"/><path class="b" d="M41,34.5l.02,3"/></svg>
 
-                        <svg id="mode-light" class="hidden" width="23px" height="23px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <svg id="mode-light" class="hidden w-6 h-6"  viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <g clip-path="url(#clip0_429_11039)">
                             <circle cx="12" cy="12" r="4" stroke="#292929" stroke-width="2.5" stroke-linejoin="round"/>
                             <path d="M20 12H21" stroke="#292929" stroke-width="2.5" stroke-linecap="round"/>
@@ -69,10 +103,13 @@
                             </defs>
                         </svg>  
                      </div>
+
             </div>
                
         </nav>
+        <!-- fin nav -->
 
+        <!-- div d'annonce -->
         <div class="flex items-center justify-center mt-[60px] md:mt-[80px] gap-4 md:gap-16">
             <div class="flex flex-col gap-1 items-center">
                 <span class="text-amber-600"><i data-lucide="heart" class="w-5 h-5 md:w-8 md:h-8 hover:fill-amber-600"></i></span>
@@ -92,25 +129,36 @@
             </div>
         </div>
 
+        <!-- div de la banière en relative -->
         <div class="relative w-full h-[80vh]">
-            <img src="images/child friend.jpg" class="w-full h-full object-cover" alt="baniere site">
-            <div class="flex flex-col p-2 md:p-6  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-
             
-                <div class="flex flex-col gap-2 md:gap-14 text-white px-2 md:px-4 items-center">
+            <!-- image de la banière -->
+            <img src="images/child friend.jpg" class="w-full h-full object-cover" alt="baniere site">
+
+            <!-- div pour center avec absolute l'input et du texte au milieu de l'image -->
+            <div class="flex flex-col p-2 md:p-6  absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+              
+                <!-- div de l'input et du texte -->
+                <div class="flex flex-col gap-2 md:gap-8 lg:gap-14 text-white px-2 md:px-4 items-center">
+
+                    <!-- div de l'input et l'icon de recherche -->
                     <div class="w-max flex gap-2 md:gap-4 items-center border md:border-2 rounded-md shadow-sm bg-white shadow-white px-2 md:px-6">
+                        <!-- l'icone search -->
                         <svg id="btn" class="bg-gray-100 p-2 rounded-lg" width="35px" height="35px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-                        <input class="w-[200px] md:w-[800px] px-2 md:px-4 py-2 md:py-4 focus:outline-none text-sm md:text-md focus:outline-none border-l-2 border-gray-300 text-gray-900 font-semibold bg-gray-100 placeholder-gray-900" type="text" id="inputSearch" placeholder="Rechercher une image">
+                        <!-- l'input -->
+                        <input class="w-[200px] sm:w-[400px] md:w-[550px] lg:w-[800px] px-2 md:px-4 py-2 md:py-4 focus:outline-none text-sm md:text-md focus:outline-none border-l-2 border-gray-300 text-gray-900 font-semibold bg-gray-100 placeholder-gray-900" type="text" id="inputSearch" placeholder="Rechercher une image">
                     </div>
+
+                    <!-- paraphe du texte -->
                     <p>
                         <span class="text-[20px] md:text-[30px]">
                             Gallery de Recherche d'images 
                         </span><br>
                         <span class="text-[16px] md:text-[20px]"><span class="italic font-serif text-white font-bold">CHICO <span class="text-amber-300">pic</span></span> est conçu avec amour et passion au service de tous, faites-en bon usage!</span>
                     </p>
-
+                    <!-- deux bouton masqué -->
                     <div class="hidden flex gap-2">
                         <button class="bg-amber-600 text-gray-900 px-6 py-2 rounded-sm hover:bg-transparent hover:text-white border border-amber-600">Create account</button>
                         <button class="bg-transparent text-white px-6 py-2 rounded-sm hover:bg-amber-600 hover:text-gray-900 border border-amber-600">Login account</button>
@@ -119,6 +167,7 @@
 
             </div>
 
+            <!-- div en absolute en dessous de l'image -->
             <div class="absolute gap-2 md:gap-16 flex items-center justify-center bg-amber-600 text-white p-2 inset-x-0 bottom-0 w-full">
             <div class="text-white  text-[8px] md:text-sm font-bold">Santé couvert</div>
             <div class="text-white font-bold flex gap-1 items-center">
@@ -134,68 +183,77 @@
         </div>
 
     </header>
+    <!-- fin header -->
 
+    <!-- debut main -->
     <main>
 
+        <!-- section pour affiche photo statique -->
         <section id="scline" class="flex flex-col pt-6 md:pt-16 pb-6 md:pb-16 px-[20px] md:px-[80px]" >
             <h1 class="inline-block relative text-md md:text-3xl font-semibold font-serif border-gray-900">Scline Child
                 <span class="absolute left-8 -bottom-1 translate-x-[-50%] dark:bg-white w-16 h-1 bg-gray-800"></span>
             </h1>
 
+            <!-- les photo statiques -->
             <div class="flex items-center pt-6 md:pt-8 justify-center gap-2 md:gap-6 ">
-                <div class="hidden  md:flex md:w-80">
-                    <img src="images/child friend.jpg" class="w-max h-80 objet cover rounded-lg  hover:scale-[1.1] transition-all duration-500" alt="image child">
+                <div class="sm:hidden lg:flex lg:w-80">
+                    <img src="images/child work.jpg" class="w-max h-80 objet cover rounded-lg  hover:scale-[1.1] transition-all duration-500" alt="image child">
                 </div>
-                <div class="w-30 md:w-80">
+                <div class="hidden sm:flex w-30 md:w-80 lg:w-80">
                     <img src="images/for child ball.jpg" class="w-max h-80 objet cover rounded-lg  hover:scale-[1.1] transition-all duration-500" alt="image-child">
                 </div>
-                <div class="w-30 md:w-80">
+                <div class="hidden sm:flex w-30 md:w-80 lg:w-80">
                     <img src="images/child rest down.jpg" class="w-max h-80 objet cover rounded-lg  hover:scale-[1.1] transition-all duration-500" alt="image child">
                 </div>
-                <div class="hidden md:flex md:w-80">
+                <div class="hidden lg:flex lg:w-80">
                     <img src="images/girl child.jpg" class="max-w-full h-80 objet cover rounded-lg hover:scale-[1.1] transition-all duration-500" alt="image child">
                 </div>
             </div>
 
         </section>
 
+        <!-- trait apres la section de photo statique -->
         <hr class="bg-gray-500 h-1 dark:bg-white  rounded-lg">
 
+        <!-- section d'affiche des photo de la recherche -->
         <section id="querypic" class="max-w-full p-4 pt-6 pb-6 md:p-6">
 
+                <!-- section du chargement des images -->
             <section id="loader" class="hidden justify-center items-center">
 
-    <div class="flex w-max items-center justify-center font-semibold gap-2 bg-indigo-500 py-1 px-2 md:py-2 md:px-4 text-white rounded-lg">
-        <svg class="animate-spin text-white stroke-gray-200" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 3C10.22 3 8.47991 3.52784 6.99987 4.51677C5.51983 5.50571 4.36628 6.91131 3.68509 8.55585C3.0039 10.2004 2.82567 12.01 3.17294 13.7558C3.5202 15.5016 4.37737 17.1053 5.63604 18.364C6.89472 19.6226 8.49836 20.4798 10.2442 20.8271C11.99 21.1743 13.7996 20.9961 15.4442 20.3149C17.0887 19.6337 18.4943 18.4802 19.4832 17.0001C20.4722 15.5201 21 13.78 21 12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
-            <path d="M19.7942 7.5C19.8905 7.66673 19.9813 7.83651 20.0667 8.00907" stroke-width="2" stroke-linecap="round"/>
-            </svg>
-            Chargement...
-    </div>
+                <div class="flex w-max items-center justify-center font-semibold gap-2 bg-indigo-500 py-1 px-2 md:py-2 md:px-4 text-white rounded-lg">
+                    <svg class="animate-spin text-white stroke-gray-200" width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 3C10.22 3 8.47991 3.52784 6.99987 4.51677C5.51983 5.50571 4.36628 6.91131 3.68509 8.55585C3.0039 10.2004 2.82567 12.01 3.17294 13.7558C3.5202 15.5016 4.37737 17.1053 5.63604 18.364C6.89472 19.6226 8.49836 20.4798 10.2442 20.8271C11.99 21.1743 13.7996 20.9961 15.4442 20.3149C17.0887 19.6337 18.4943 18.4802 19.4832 17.0001C20.4722 15.5201 21 13.78 21 12" stroke="#000000" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M19.7942 7.5C19.8905 7.66673 19.9813 7.83651 20.0667 8.00907" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                        Chargement...
+                </div>
             </section>
 
-
-<div id="gallery" class="grid grid-cold-1 gap-4 md:grid-cols-3 md:gap-4">
-
-</div>
+            <!-- div qui contient et affiche tous les images de la requette -->
+            <div id="gallery" class="grid grid-cold-1 gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-3"></div>
 
     </section>
 
+    <!-- section nous contacter -->
     <section id="contact" class="w-full py-6 px-4 items-center">
 
-        <div class="flex flex-col md:flex-row gap-4 md:gap-16 justify-center">
+        <!-- div du contact -->
+        <div class="flex flex-col lg:flex-row gap-4 lg:gap-16 justify-center">
 
+             <!-- div qui contient des lien whatsapp et appel -->
             <div class="flex flex-col gap-6 md:gap-4">
                 <h1 class="text-3xl text-gray-900 dark:text-white font-bold">Contact us</h1>
                 <span class="flex gap-4 items-center"><a href="https://mail.google.com/mail/?view=cm&fs=1&to=chicowebdev@gmail.com&su=Sujet&body=Message%20ici" target="_blank"><i class="fas fa-paper-plane dark:text-amber-300 text-amber-900"></i></a><a href="https://mail.google.com/mail/?view=cm&fs=1&to=monadresse@gmail.com&su=Sujet&body=Message%20ici" target="_blank" class="decoration-none font-semibold dark:text-amber-300 text-md text-amber-900">chicowebdev@gmail.com</a></span>
                 <span class="flex gap-4 items-center"><a href="https://wa.me/2250586247542"><i class="fab fa-whatsapp dark:text-amber-300 text-amber-900"></i></a><a href="https://wa.me/2250586247542" class="decoration-none font-semibold dark:text-amber-300 text-md text-amber-900">WhatsApp</a></span>
             </div>
 
-            <div class="items-start flex flex-col gap-2 md:gap-4 p-1 md:p-2">
+            <div class="items-start flex flex-col gap-2 lg:gap-4 p-1 md:p-2">
                 <div id="accountGoogle"></div>
                 <!-- <button id="logoutBtn" class="bg-white text-gray-800 px-3 py-1 rounded justify-center">Se déconnecter</button> -->
 
-                <form id="commentForm" class="flex flex-col gap-2 md:gap-4 items-start w-full">
+                <!-- formulaire de commentaire a envoyer par email -->
+                <form id="commentForm" class="flex flex-col gap-2 lg:gap-4 items-start w-full">
                 <textarea name="" id="commentInput" placeholder="Entrer un commentaire" class="w-full h-32 sm:h-40 md:w-[500px] md:h-48 border-none p-4 bg-gray-500 text-white font-semibold focus:outline-none placeholder-white rounded-lg resize-none shadow-sm shadow-gray-600 "></textarea>
                 <button type="submit" id="sendMail" class="px-6 py-2 bg-gray-800 text-md font-semibold text-white transition-all duration-500 rounded-lg border border-white dark:bg-white dark:text-gray-800 hover:dark:bg-transparent hover:dark:text-white hover:dark:border hover:dark:border-white hover:bg-gray-500">Envoyer</button>
                 </form>
@@ -203,24 +261,28 @@
 
         </div>
 
+        <!-- affichage des commentaire pas encore disponible -->
         <div id="user-info"></div>
 
     </section>
 
     </main>
+    <!-- fin main -->
 
-    <footer id="propos" class="flex flex-col items-center md:items-start justify-center gap-6 bg-gray-500 text-white w-full py-3 px-0 md:px-4 md:py-8 rounded-t-md">
+    <!-- debut footer -->
+    <footer id="propos" class="flex flex-col items-center lg:items-start justify-center gap-12 bg-gray-500 text-white w-full py-3 px-0 md:px-4 md:py-8 rounded-t-md">
 
-    <div class="flex flex-col md:flex-row gap-12 md:gap-16 md:py-4 items-center md:items-start">
+    <!-- div d'information du site -->
+    <div class="flex flex-col lg:flex-row gap-12 lg:gap-16 lg:py-4 items-center lg:items-start">
 
-        <div class="flex flex-col gap-2 px-3 md-p0 items-center">
+        <div class="flex flex-col gap-2 px-3 lg:p-0 items-center">
             <h1 class="text-xl md:text-3xl italic font-serif font-bold text-white">CHICO <span class="text-amber-300">pic</span></h1>
             <p class="text-[16px] md:text-[18px]">Plus de Million de personnes utilisent nos services à leur besoin nous vous souhaitons un bon visionnage et une bonne expérience.</p>
         </div>
         
-        <div class="flex flex-col gap-4 items-center md:items-start">
+        <div class="flex flex-col gap-4 items-center lg:items-start">
             <h1 class="text-xl md:text-2xl font-bold">Compagnies</h1>
-            <div class="flex flex-col gap-2 items-center md:items-start text-[16px] md:text-[18px]">
+            <div class="flex flex-col gap-2 items-center lg:items-start text-[16px] md:text-[20px]">
                 <span>Pexels</span>
                 <span>4 images 1 mot</span>
                 <span>API tools</span>
@@ -230,9 +292,9 @@
         </div>
         
 
-        <div class="flex flex-col gap-4 items-center md:items-start">
+        <div class="flex flex-col gap-4 items-center lg:items-start">
             <h1 class="text-xl md:text-2xl font-bold">Communauté</h1>
-            <div class="flex flex-col gap-2 items-center md:items-start text-[16px] md:text-[18px]">
+            <div class="flex flex-col gap-2 items-center lg:items-start text-[16px] md:text-[20px]">
                 <span>Blog</span>
                 <span>Forum</span>
                 <span>WebDev</span>
@@ -241,9 +303,9 @@
            
         </div>
 
-        <div class="flex flex-col gap-4 items-center md:items-start">
+        <div class="flex flex-col gap-4 items-center lg:items-start">
             <h1 class="text-xl md:text-2xl font-bold">Soutien</h1>
-            <div class="flex flex-col gap-2 items-center md:items-start text-[16px] md:text-[18px]">
+            <div class="flex flex-col gap-2 items-center lg:items-start text-[16px] md:text-[20px]">
                 <span>Don du coeur</span>
                 <span>Un don, un sourire</span>
                 <span>enfant du coeur</span>
@@ -252,9 +314,9 @@
            
         </div>
 
-        <div class="flex flex-col gap-4 items-center md:items-start">
+        <div class="flex flex-col gap-4 items-center lg:items-start">
             <h1 class="text-xl md:text-2xl font-bold">A Propos</h1>
-            <div class="flex flex-col gap-2 items-center md:items-start text-[16px] md:text-[18px]">
+            <div class="flex flex-col gap-2 items-center lg:items-start text-[16px] md:text-[20px]">
                 <span>Mentions légales</span>
                 <span>FAQ</span>
                 <span>Conditions s'utilisation</span>
@@ -266,21 +328,24 @@
 
     </div>
 
-    <div class="flex gap-6 items-center justify-start items-center md:items-start text-[16px] md:text-[20px]">
+    <!-- div pour lien reseau social pas encore ajouté -->
+    <div class="flex gap-6 items-center justify-start items-center lg:items-start text-[16px] md:text-[20px]">
         <i class="fab fa-facebook-f text-amber-300"><a href=""></a></i>
         <i class="fab fa-x-twitter text-amber-300"><a href=""></a></i>
         <i class="fab fa-instagram text-amber-300"><a href=""></a></i>
         <i class="fab fa-linkedin-in text-amber-300"><a href=""></a></i>
     </div>
 
-    <div class="w-full bg-gray-600 flex justify-center text-[12px] md:text-[16px] p-2">
+    <!-- le droit d'auteur -->
+    <div class="w-full bg-gray-600 flex justify-center text-[12px] md:text-[20px] p-2">
         &copy; 2025 All right reserved. Make with love ❤ by <span class="font-semi-bold text-amber-300 px-1">Chico-WebDev</span>
     </div>
 
     </footer>
-
+<!-- lien pour icone -->
 <script src="https://unpkg.com/lucide@latest"></script>
 <script>
+    // fonction pour icone
   lucide.createIcons();
 </script>
 <script src="./src/app.js" defer></script>

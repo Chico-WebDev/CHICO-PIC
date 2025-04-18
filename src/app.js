@@ -7,6 +7,7 @@ const btn = document.getElementById("btn")
 const gallery = document.getElementById("gallery");
 const loader = document.getElementById("loader");
 
+// function pour recupérer les données d'images et de gestion des erreurs
 async function fetchImages(query) {
     gallery.innerHTML = "";
     loader.style.display = "flex"; // Afficher le loader
@@ -29,7 +30,6 @@ async function fetchImages(query) {
         
     } catch (error) {
         console.error("Erreur:", error);
-        alert("Une erreur est survenue. Veuillez réessayer.");
     }
  finally {
     loader.style.display = "none"; // Cacher le loader après le chargement
@@ -50,7 +50,9 @@ async function fetchImages(query) {
     // });
 // }
 
+
 // Afficher les images sur la page
+// function pour afficher les photos en créant une div pour chaque photo puis de l'auteur et le bouton de téléchargement
 function displayImages(photos) {
     gallery.innerHTML = ''; // Nettoyer la galerie
     photos.forEach(photo => {
@@ -93,20 +95,70 @@ function displayImages(photos) {
     });
 }
 
-// Gérer l'événement du bouton
+// Gérer l'événement du bouton de l'icon search
 btn.addEventListener('click', () => {
     const query = inputSearch.value.trim();
+    
     if (query) {
         fetchImages(query);
         localStorage.setItem("query", JSON.stringify(query));
         
     } else {
-        alert("Veuillez entrer un mot-clé.");
+        const btnQuery = (localStorage.getItem("query")); 
+       if (btnQuery) {
+            if(gallery) {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+
+       }
     }
 });
 
-  // Bouton de recherche sur mobile 
+// Gérer l'événement du bouton
+// btn.addEventListener('click', () => {
+//     const query = inputSearch.value.trim();
 
+//     if (query) {
+//         fetchImages(query);
+//         localStorage.setItem("query", JSON.stringify(query));
+//     } else {
+//         // Le champ de recherche est vide
+//         const recherchePrecedenteJSON = localStorage.getItem("query");
+//         if (recherchePrecedenteJSON) {
+//             const recherchePrecedente = JSON.parse(recherchePrecedenteJSON);
+//             fetchImages(recherchePrecedente); // Utiliser la recherche précédente
+
+//             if (gallery) {
+//                 gallery.scrollIntoView({ behavior: 'smooth', block: 'start' });
+//             }
+//         }
+//         // Vous pourriez ajouter un else ici si aucune recherche précédente n'existe
+//         // (par exemple, afficher un message à l'utilisateur)
+//     }
+// })
+
+// Excécution de la requette lorsque le user taper enter si il se trouve dans l'input
+inputSearch.addEventListener("keypress", function(event) {
+    if(event.key === "Enter") {
+        const query = inputSearch.value.trim();
+        if (query) {
+            fetchImages(query);
+            localStorage.setItem("query", JSON.stringify(query));
+            
+        } else {
+        const btnQuery = (localStorage.getItem("query")); 
+       if (btnQuery) {
+            if(gallery) {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+
+       }
+    }
+    }
+})
+
+
+  // Bouton de recherche sur mobile 
   const btnMobile = document.getElementById("btnMobile");
 const divBtnMobile = document.getElementById("divBtnMobile");
 const divInputMobile = document.getElementById("divInputMobile");
@@ -115,20 +167,43 @@ const gift = document.getElementById("gift");
 const divBtnDelete = document.getElementById("divBtnDelete");
 const nav = document.getElementById("nav");
 
+// attribuer la même valeur dans l'input mobile et celle du search au milieu de la banière
 inputMobileSearch.addEventListener("input", () => {
     if (inputSearch.value !== inputMobileSearch.value) {
       inputSearch.value = inputMobileSearch.value;
     }
   });
-  
+
+//   attribuer toujous la même valeur de l'input search sur la page et celle du mobile
   inputSearch.addEventListener("input", () => {
     if (inputMobileSearch.value !== inputSearch.value) {
       inputMobileSearch.value = inputSearch.value;
     }
   });
 
+  // Excécution de la requette lorsque le user taper enter si il se trouve dans l'input sur mobile
+inputMobileSearch.addEventListener("keypress", function(event) {
+    if(event.key === "Enter") {
+        const query = inputMobileSearch.value.trim();
+        if (query) {
+            fetchImages(query);
+            localStorage.setItem("query", JSON.stringify(query));
+            
+        } else {
+        const btnQuery = (localStorage.getItem("query")); 
+       if (btnQuery) {
+            if(gallery) {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+
+       }
+    }
+    }
+})
+
 let searchVisible = false;
 
+// Excécution de la requette avec le bouton de l'icon search sur mobile
 btnMobile.addEventListener("click", () => {
   if (!searchVisible) {
     // Afficher la barre
@@ -136,7 +211,7 @@ btnMobile.addEventListener("click", () => {
     gift.classList.add("hidden");
     divBtnDelete.classList.remove("hidden");
     darkMode.classList.add("hidden");
-    divBtnMobile.className = "w-max flex gap-2 p-1 items-center border border-gray-900 dark:border-white rounded-lg justify-between bg-transparent dark:bg-transparent";
+    divBtnMobile.className = "md:hidden w-full flex gap-2 p-1 items-center border border-gray-900 dark:border-white rounded-lg justify-between bg-transparent dark:bg-transparent";
     divInputMobile.classList.remove("hidden");
     inputMobileSearch.focus();
     searchVisible = true;
@@ -147,7 +222,11 @@ btnMobile.addEventListener("click", () => {
       fetchImages(query);
       localStorage.setItem("query", JSON.stringify(query));
     } else {
-      alert("Entrer un mot clé");
+        if (query === "") {
+            if(gallery) {
+                gallery.scrollIntoView({ behavior: 'smooth', block: 'start' })
+            }
+           }
     }
   }
 });
@@ -164,7 +243,7 @@ divBtnDelete.addEventListener("click", () => {
 });
 
   
-
+// si le loaclstorage contient une valeur on éffectue la recherche de cette valeur au rechargement de la page sinon on fais la recherche avec la valeur nature et on l'affiche
 window.onload = () => {
     const savedQuery = JSON.parse(localStorage.getItem('query'));
     if (savedQuery) {
@@ -187,8 +266,8 @@ window.onload = () => {
     }
   };
 
-  const darkMode = document.getElementById("dark-mode");
-
+// gestion du darkmode
+const darkMode = document.getElementById("dark-mode");
 
 darkMode.addEventListener("click", () => {
 
@@ -205,6 +284,7 @@ if (document.documentElement.classList.contains('dark')) {
   }
 })
 
+// gestion du localstorage du darkmode
 if (localStorage.getItem('theme') === 'dark') {
     document.documentElement.classList.add('dark');
     document.getElementById("mode-light").classList.toggle("hidden");
@@ -212,6 +292,88 @@ if (localStorage.getItem('theme') === 'dark') {
   };
   
 
+//   afficher la barre de recherche lorsque scroll vers le bas
+window.onscroll = function() {
+
+    const inputFixedSearch = document.getElementById("inputFixedSearch");
+    const divBtn = document.getElementById("divBtn");
+    const divDelete = document.getElementById("divDelete")
+    const divMobile = document.getElementById("divMobile");
+    const backToTopBtn = document.getElementById("backToTopBtn");
+    const navItem = document.getElementById("nav-item");
+
+    
+    if (document.body.scrollTop > 500 || document.documentElement.scrollTop > 500) {
+        navItem.classList.add("md:hidden");
+        divBtn.className = "hidden md:flex w-max flex gap-2 p-1 items-center border border-white rounded-lg justify-between bg-transparent dark:bg-transparent";
+        backToTopBtn.style.display = "block";
+
+        inputFixedSearch.addEventListener("input", () => {
+            if (inputSearch.value !== inputFixedSearch.value) {
+              inputSearch.value = inputFixedSearch.value;
+            }
+          });
+          
+          inputSearch.addEventListener("input", () => {
+            if (inputFixedSearch.value !== inputSearch.value) {
+                inputFixedSearch.value = inputSearch.value;
+            }
+          });
+
+
+          inputFixedSearch.addEventListener("keypress", function(event) {
+            if(event.key === "Enter") {
+                const query = inputFixedSearch.value.trim();
+                if (query) {
+                    fetchImages(query);
+                    localStorage.setItem("query", JSON.stringify(query));
+                    
+                } else {
+                const btnQuery = (localStorage.getItem("query")); 
+               if (btnQuery) {
+                    if(gallery) {
+                        gallery.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }
+               }
+            }
+            }
+        })
+
+
+
+        divMobile.addEventListener("click", () => {
+             const query = inputFixedSearch.value.trim();
+            if (query) {
+            fetchImages(query);
+            localStorage.setItem("query", JSON.stringify(query));
+            } else {
+                if (query === "") {
+                    if(gallery) {
+                        gallery.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }
+                }
+            }
+        })
+
+
+
+        divDelete.addEventListener("click", () => {
+           divBtn.className = "hidden"
+            navItem.className = "flex"
+
+          });
+
+    } else {
+        backToTopBtn.style.display = "none";
+        navItem.classList.remove("md:hidden")
+        divBtn.className = "hidden"
+    }
+  };
+  
+//  gestion bouton qui revient en haut de page
+    document.getElementById("backToTopBtn").onclick = function()  {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    };
 
 
 /*
@@ -259,10 +421,11 @@ if (localStorage.getItem('theme') === 'dark') {
   })*/
 
 
-
+// authentifiaction google non disponible
     document.addEventListener("DOMContentLoaded", () => {
         const savedQuery = localStorage.getItem("query");
       
+        // faire la recherche de la valeur précédente enrégistrer dans le local storage sinon excécuter avec la valeur nature
         if (!savedQuery) {
           // Première fois : aucune recherche sauvegardée
           fetchImages("nature"); // ou un thème par défaut que tu veux
@@ -275,7 +438,7 @@ if (localStorage.getItem('theme') === 'dark') {
       
       console.log('Script chargé'); // pour tester
 
-
+// gestion de connexion google non disponible
       window.addEventListener('DOMContentLoaded', async () => {
         console.log('DOM chargé, script en cours...');
         const accountGoogle = document.getElementById('accountGoogle');
