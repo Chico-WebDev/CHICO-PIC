@@ -1,0 +1,43 @@
+// index.js
+/*require('dotenv').config(); // Pour lire le fichier .env
+const express = require('express');
+const axios = require('axios');
+const cors = require('cors');
+const app = express();
+
+// Autoriser les requêtes depuis n'importe quelle origine (à sécuriser plus tard si besoin)
+app.use(cors());
+
+// Route pour interroger l'API Pexels via ton backend
+app.get("/api/search", async (req, res) => {
+  const { query, per_page } = req.query;
+
+  if (!query) {
+    return res.status(400).json({ error: "Paramètre 'query' manquant." });
+  }
+
+  try {
+    const response = await axios.get("https://api.pexels.com/v1/search", {
+      headers: {
+        Authorization: process.env.PEXELS_API_KEY,
+      },
+      params: {
+        query: query,
+        per_page: per_page || 39,
+      },
+    });
+
+    res.json(response.data);
+  } catch (error) {
+    console.error("Erreur avec l'API Pexels :", error.message);
+    res.status(500).json({ error: "Erreur lors de la récupération des images." });
+  }
+});
+
+// Lancement du serveur
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Serveur démarré sur http://localhost:${PORT}`);
+});
+
+*/

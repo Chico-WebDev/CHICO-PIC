@@ -1,0 +1,71 @@
+# Dossier contenant les modules Node.js
+node_modules
+
+# Fichiers de log ou de débogage spécifiques à votre backend Express
+logs
+*.log
+debug.log
+
+# Dossier contenant les sessions (si vous les stockez localement - attention à la sécurité en production !)
+sessions
+
+# Fichiers de configuration sensibles (à adapter selon votre configuration)
+.env
+config/*.json
+credentials.json
+
+# Dossier de build ou de distribution de votre frontend (si vous en avez un séparé)
+build
+dist
+
+# Dossier de cache de votre bundler (par exemple, Parcel, Webpack)
+.cache
+
+# Fichiers spécifiques à l'IDE (si vous utilisez VS Code, IntelliJ, etc.)
+.vscode/
+.idea/
+
+# Fichiers temporaires du système d'exploitation
+.DS_Store
+Thumbs.db
+
+# Dossier généré par Tailwind CSS (si vous utilisez le JIT)
+tailwind-output
+
+# Autres dossiers ou fichiers que vous souhaitez ignorer
+# Ajoutez ici les noms des dossiers ou fichiers supplémentaires
+mon_dossier_temporaire/
+mon_fichier_secret.txt
+
+
+# 📦 Dépendances Node.js (si tu utilises npm, yarn ou pnpm)
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# 🏗️ Fichiers générés par Tailwind et JS
+dist/
+public/css/tailwind.css
+public/js/bundle.js
+
+# ⚙️ Fichiers d'environnement
+.env
+.env.local
+.env.*.local
+
+# 📝 Logs et fichiers temporaires
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+.cache/
+
+# 🔧 Fichiers de l’éditeur (VS Code, JetBrains)
+.vscode/
+.idea/
+*.iml
+
+# 🖼️ Fichiers système (Windows & macOS)
+.DS_Store
+Thumbs.db
