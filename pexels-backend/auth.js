@@ -25,6 +25,14 @@ app.use(express.static("public"));
 //     console.log('Session actuelle :', req.session);
 //     res.send('Hello!');
 //   });
+
+// Utilisez le middleware cors pour autoriser les requêtes cross-origin
+// Pour autoriser une origine spécifique :
+const corsOptions = {
+    origin: 'https://chico-webdev.github.io',
+    // Vous pouvez ajouter d'autres options comme les méthodes HTTP autorisées, les headers, etc.
+  };
+  app.us
   
 // Autoriser les requêtes depuis n'importe quelle origine (à sécuriser plus tard si besoin)
 const cors = require('cors');
