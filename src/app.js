@@ -438,77 +438,77 @@ window.onscroll = function() {
       
       console.log('Script chargé'); // pour tester
 
-// gestion de connexion google non disponible
-      window.addEventListener('DOMContentLoaded', async () => {
-        console.log('DOM chargé, script en cours...');
-        const accountGoogle = document.getElementById('accountGoogle');
+// // gestion de connexion google non disponible
+//       window.addEventListener('DOMContentLoaded', async () => {
+//         console.log('DOM chargé, script en cours...');
+//         const accountGoogle = document.getElementById('accountGoogle');
       
-        try {
-          const res = await fetch('http://localhost:3000/api/user', {
-            credentials: 'include'
-          });
+//         try {
+//           const res = await fetch('http://localhost:3000/api/user', {
+//             credentials: 'include'
+//           });
       
-          const data = await res.json();
+//           const data = await res.json();
       
-          if (data.isLoggedIn) {
-            accountGoogle.innerHTML = `
-              <div class="flex items-center gap-2 bg-gray-800 dark:bg-white text-white dark:text-gray-800 px-3 py-1 rounded">
-                <img src="${data.photo}" alt="Photo de profil" class="w-8 h-8 rounded-full shadow" />
-                <span class="text-gray-800 font-semibold">${data.name}</span>
-                <a href="http://localhost:3000/logout" class="ml-4 text-red-500 font-bold">Déconnexion</a>
+//           if (data.isLoggedIn) {
+//             accountGoogle.innerHTML = `
+//               <div class="flex items-center gap-2 bg-gray-800 dark:bg-white text-white dark:text-gray-800 px-3 py-1 rounded">
+//                 <img src="${data.photo}" alt="Photo de profil" class="w-8 h-8 rounded-full shadow" />
+//                 <span class="text-gray-800 font-semibold">${data.name}</span>
+//                 <a href="http://localhost:3000/logout" class="ml-4 text-red-500 font-bold">Déconnexion</a>
                 
-              </div>
-            `;
+//               </div>
+//             `;
 
-              // Attacher l'écoute du bouton de déconnexion
-                document.getElementById('logoutBtn').addEventListener('click', () => {
-                    fetch('http://localhost:3000/logout', {
-                    method: 'GET',
-                    credentials: 'include'
-                    }).then(() => {
-                    window.location.reload();
-                    });
-                });
-            console.log('Utilisateur connecté :', data);
+//               // Attacher l'écoute du bouton de déconnexion
+//                 document.getElementById('logoutBtn').addEventListener('click', () => {
+//                     fetch('http://localhost:3000/logout', {
+//                     method: 'GET',
+//                     credentials: 'include'
+//                     }).then(() => {
+//                     window.location.reload();
+//                     });
+//                 });
+//             console.log('Utilisateur connecté :', data);
 
-          } else {
-            accountGoogle.innerHTML = `
-              <a href="http://localhost:3000/auth/google" class=" bg-gray-800 dark:bg-white text-white dark:text-gray-800 px-3 py-1 rounded">
-                <i class="fa-brands fa-google"></i> Connexion Google
-              </a>
-            `;
-            console.log('Utilisateur non connecté :', data)
-          }
+//           } else {
+//             accountGoogle.innerHTML = `
+//               <a href="http://localhost:3000/auth/google" class=" bg-gray-800 dark:bg-white text-white dark:text-gray-800 px-3 py-1 rounded">
+//                 <i class="fa-brands fa-google"></i> Connexion Google
+//               </a>
+//             `;
+//             console.log('Utilisateur non connecté :', data)
+//           }
       
-        } catch (err) {
+//         } catch (err) {
         
-          console.error('Erreur lors de la vérification de la connexion', err);
-          accountGoogle.innerHTML = `
-            <a href="http://localhost:3000/auth/google" class=" bg-gray-800 dark:bg-white text-white dark:text-gray-800 px-3 py-1 rounded">
-              Connexion Google
-            </a>
-          `;
-          console.log('Utilisateur erreur :', err)
-        }
-      });
+//           console.error('Erreur lors de la vérification de la connexion', err);
+//           accountGoogle.innerHTML = `
+//             <a href="http://localhost:3000/auth/google" class=" bg-gray-800 dark:bg-white text-white dark:text-gray-800 px-3 py-1 rounded">
+//               Connexion Google
+//             </a>
+//           `;
+//           console.log('Utilisateur erreur :', err)
+//         }
+//       });
 
-      window.addEventListener("DOMContentLoaded", () => {
-        const params = new URLSearchParams(window.location.search);
-        const userData = params.get("user");
+//       window.addEventListener("DOMContentLoaded", () => {
+//         const params = new URLSearchParams(window.location.search);
+//         const userData = params.get("user");
         
-        if (userData) {
-          const user = JSON.parse(decodeURIComponent(userData));
-          document.getElementById("user-info").innerHTML = `
-            <h2>Bienvenue, ${user.name}</h2>
-            <p>Email : ${user.email}</p>
-            <img src="${user.picture}" width="20" height="20" style="border-radius: 50%;" />
-          `;
-          console.log("donné user", userData)
-        }
-        else {
-            console.log("donnéé failed", userData)
-        }
-      });
+//         if (userData) {
+//           const user = JSON.parse(decodeURIComponent(userData));
+//           document.getElementById("user-info").innerHTML = `
+//             <h2>Bienvenue, ${user.name}</h2>
+//             <p>Email : ${user.email}</p>
+//             <img src="${user.picture}" width="20" height="20" style="border-radius: 50%;" />
+//           `;
+//           console.log("donné user", userData)
+//         }
+//         else {
+//             console.log("donnéé failed", userData)
+//         }
+//       });
 
       
       // Envoie de commentaire dans la boite mail
