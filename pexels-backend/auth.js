@@ -34,8 +34,9 @@ const corsOptions = {
   };
   app.us
   
+  
 
-  const allowedOrigins = ['https://chico-webdev.github.io', 'http://localhost:5500'];
+  const allowedOrigins = ['https://chico-webdev.github.io', 'http://127.0.0.1:5500'];
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
