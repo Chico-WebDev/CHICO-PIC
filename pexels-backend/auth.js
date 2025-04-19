@@ -34,12 +34,25 @@ const corsOptions = {
   };
   app.us
   
+
+  const allowedOrigins = ['https://chico-webdev.github.io', 'http://localhost:5500'];
+
+app.use((req, res, next) => {
+  const origin = req.headers.origin;
+  if (allowedOrigins.includes(origin)) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  next();
+});
+
 // Autoriser les requêtes depuis n'importe quelle origine (à sécuriser plus tard si besoin)
-const cors = require('cors');
-app.use(cors({
-    origin: 'http://127.0.0.1:5500', // l'origine de ton front
-    credentials: true               // autorise les cookies/sessions
-  }));
+// const cors = require('cors');
+// app.use(cors({
+//     origin: 'http://127.0.0.1:5500', // l'origine de ton front
+//     credentials: true               // autorise les cookies/sessions
+//   }));
 
 
 // app.use(session({
