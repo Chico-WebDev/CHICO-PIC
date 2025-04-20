@@ -7,6 +7,7 @@ const express = require('express');
 const session = require('express-session');
 const passport = require('passport');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const path = require('path');
 
 
 
@@ -16,7 +17,13 @@ const axios = require('axios');
 
 const app = express();
 app.use(express.json());
-app.use(express.static("public"));
+// app.use(express.static("public"));
+app.use(express.static(__dirname)); // Sert les fichiers statiques depuis la racine du projet
+app.use('/src', express.static(path.join(__dirname, 'src'))); // Sert les fichiers statiques depuis le dossier 'src'
+
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html')); // Remplacez 'votre_fichier_html.html' par le nom de votre fichier HTML principal
+});
 
 const cors = require("cors");
 app.use(cors());
