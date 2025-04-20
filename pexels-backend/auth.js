@@ -25,6 +25,8 @@ app.use(express.static(__dirname)); // Sert les fichiers statiques depuis la rac
 //   res.sendFile(path.join(__dirname, 'index.html')); // Remplacez 'votre_fichier_html.html' par le nom de votre fichier HTML principal
 // });
 
+// Sert les fichiers statiques depuis la racine (pour output.css et index.html)
+app.use(express.static(__dirname + '/..'));
 
 // Sert index.html à la racine
 app.get('/', (req, res) => {
