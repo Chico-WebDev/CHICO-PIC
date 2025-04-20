@@ -19,11 +19,23 @@ const app = express();
 app.use(express.json());
 // app.use(express.static("public"));
 app.use(express.static(__dirname)); // Sert les fichiers statiques depuis la racine du projet
-app.use('/src', express.static(path.join(__dirname, 'src'))); // Sert les fichiers statiques depuis le dossier 'src'
+// app.use('/src', express.static(path.join(__dirname, 'src'))); // Sert les fichiers statiques depuis le dossier 'src'
 
+// app.get('/', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'index.html')); // Remplacez 'votre_fichier_html.html' par le nom de votre fichier HTML principal
+// });
+
+
+// Sert index.html à la racine
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'index.html')); // Remplacez 'votre_fichier_html.html' par le nom de votre fichier HTML principal
+  res.sendFile(path.join(__dirname, '..', 'index.html')); // Remonte d'un niveau pour atteindre la racine
 });
+
+// Sert les fichiers statiques depuis le dossier 'src' sous le préfixe '/src'
+app.use('/src', express.static(path.join(__dirname, '..', 'src'))); // Remonte d'un niveau pour atteindre la racine
+
+// ... vos autres routes backend ...
+
 
 const cors = require("cors");
 app.use(cors());
