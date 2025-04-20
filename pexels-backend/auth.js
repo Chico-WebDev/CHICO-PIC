@@ -18,6 +18,8 @@ const app = express();
 app.use(express.json());
 app.use(express.static("public"));
 
+const cors = require("cors");
+app.use(cors());
 
   
 
@@ -337,6 +339,7 @@ app.get("/api/search", async (req, res) => {
 });
 
 // === LANCER LE SERVEUR ===
-app.listen(3000, () => {
-  console.log('Serveur démarré sur http://localhost:3000');
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Serveur démarré sur ${port}`);
 });
