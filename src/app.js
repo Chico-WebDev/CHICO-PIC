@@ -13,7 +13,9 @@ async function fetchImages(query) {
     loader.style.display = "flex"; // Afficher le loader
     
     
-    const url = `http://localhost:3000/api/search?query=${query}&per_page=42`;
+    // const url = `http://localhost:3000/api/search?query=${query}&per_page=42`;
+    const url = `https://projet-api-qx7d.onrender.com/api/search?query=${query}&per_page=42`;
+
     
     //`https://api.pexels.com/v1/search?query=${query}&per_page=42`;
 
@@ -75,14 +77,14 @@ function displayImages(photos) {
     // Nom du photographe
     const author = document.createElement('p');
     author.innerHTML = `Auteur : <strong>${photo.photographer}</strong>`;
-    author.className = "flex gap-2 items-center text-white text-sm md:text-md lg:text-lg xl:text-xl";
+    author.className = "flex gap-2 items-center text-white text-sm md:text-md";
 
     // Bouton de téléchargement
     const downloadBtn = document.createElement('a');
     downloadBtn.href = photo.src.original;
     downloadBtn.setAttribute('download', '');
     downloadBtn.innerHTML = `<i class="fas fa-download"></i>`;
-    downloadBtn.className = "inline-block px-2 py-1 bg-green-600 text-white text-sm md:text-md lg:text-lg xl:text-xl rounded-lg hover:bg-gray-900";
+    downloadBtn.className = "inline-block px-2 py-1 bg-green-600 text-white text-sm md:text-md lg:text-lg rounded-lg hover:bg-gray-900";
 
 
     // Assemblage
