@@ -541,7 +541,7 @@ window.onscroll = function() {
       
       // Envoie de commentaire dans la boite mail
       document.getElementById("sendMail").addEventListener("click", () => {
-        const message = document.getElementById('exampleFormControlTextarea1').value;
+        const message = document.getElementById('commentInput').value;
         const email = "chicowebdev@gmail.com";
         const subject = "Message depuis le site";
       
