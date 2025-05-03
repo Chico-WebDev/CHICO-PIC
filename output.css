@@ -1178,6 +1178,14 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
+.no-underline {
+  text-decoration-line: none;
+}
+
 .placeholder-gray-900::-moz-placeholder {
   --tw-placeholder-opacity: 1;
   color: rgb(17 24 39 / var(--tw-placeholder-opacity, 1));
@@ -1319,6 +1327,10 @@ video {
 .hover\:text-white:hover {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+}
+
+.hover\:underline:hover {
+  text-decoration-line: underline;
 }
 
 .focus\:outline-none:focus {

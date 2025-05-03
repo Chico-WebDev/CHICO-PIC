@@ -85,7 +85,7 @@ function displayImages() {
 
     // Nom du photographe
     const author = document.createElement('p');
-    author.innerHTML = `Auteur : <strong>${photo.photographer}</strong>`;
+    author.innerHTML = `Auteur : <strong><a href="${photo.photographer_url}" target="_blank" class="no-underline hover:underline">${photo.photographer}</a></strong>`;
     author.className = "flex gap-2 items-center text-white text-sm md:text-md";
 
     // Bouton de téléchargement
