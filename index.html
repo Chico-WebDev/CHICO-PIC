@@ -48,7 +48,7 @@
 
                 <!-- div input -->
                 <div id="divInput">
-                    <input class="w-[350px] lg:w-[600px] xl:w-[800px]  px-2 focus:outline-none text-sm text-white bg-transparent border-l-2 border-gray-300 font-semibold placeholder-white" type="text" id="inputFixedSearch" placeholder="Rechercher une image">
+                    <input class="text-base w-[350px] lg:w-[600px] xl:w-[800px]  px-2 focus:outline-none text-white bg-transparent border-l-2 border-gray-300 font-semibold placeholder-white" type="text" id="inputFixedSearch" placeholder="Rechercher une image">
                 </div>
             </div>
 
@@ -71,7 +71,7 @@
 
                     <!-- div input -->
                     <div id="divInputMobile" class="hidden">
-                        <input class="w-[250px] sm:w-[550px] md:hidden px-2 border-l-2 border-white focus:outline-none text-sm text-white bg-transparent font-semibold placeholder-white" type="text" id="inputMobileSearch" placeholder="Rechercher une image">
+                        <input class="w-[250px] sm:w-[550px] md:hidden px-2 border-l-2 border-white focus:outline-none text-base text-white bg-transparent font-semibold placeholder-white" type="text" id="inputMobileSearch" placeholder="Rechercher une image">
                     </div>
                 </div>
 
@@ -148,7 +148,7 @@
                             <path d="M15.7955 15.8111L21 21M18 10.5C18 14.6421 14.6421 18 10.5 18C6.35786 18 3 14.6421 3 10.5C3 6.35786 6.35786 3 10.5 3C14.6421 3 18 6.35786 18 10.5Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         <!-- l'input -->
-                        <input class="w-[200px] sm:w-[400px] md:w-[550px] lg:w-[800px] px-2 md:px-4 py-2 md:py-4 focus:outline-none text-sm md:text-md focus:outline-none border-l-2 border-gray-300 text-gray-900 font-semibold bg-gray-100 placeholder-gray-900" type="text" id="inputSearch" placeholder="Rechercher une image">
+                        <input class="w-[200px] sm:w-[400px] md:w-[550px] lg:w-[800px] px-2 md:px-4 py-2 md:py-4 focus:outline-none text-base md:text-md focus:outline-none border-l-2 border-gray-300 text-gray-900 font-semibold bg-gray-100 placeholder-gray-900" type="text" id="inputSearch" placeholder="Rechercher une image">
                     </div>
 
                     <!-- paraphe du texte -->
@@ -232,6 +232,13 @@
 
             <!-- div qui contient et affiche tous les images de la requette -->
             <div id="gallery" class="grid grid-cold-1 gap-4 md:grid-cols-2 md:gap-4 lg:grid-cols-3"></div>
+           
+            <section class="w-full mt-8 md:mt-10 lg:mt-12">
+                 <button id="load-more" class="mx-auto mt-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-800 font-bold">
+                    Voir Plus d'images
+                </button>
+            </section>
+
 
     </section>
 

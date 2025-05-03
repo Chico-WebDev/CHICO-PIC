@@ -7,14 +7,20 @@ const btn = document.getElementById("btn")
 const gallery = document.getElementById("gallery");
 const loader = document.getElementById("loader");
 
+let allPhotos = [];  // Stocke toutes les photos récupérées
+let currentIndex = 0; // Pour suivre combien ont été affichées
+const step = 21;      // Combien afficher par clic
+
 // function pour recupérer les données d'images et de gestion des erreurs
 async function fetchImages(query) {
-    gallery.innerHTML = "";
+     gallery.innerHTML = "";
     loader.style.display = "flex"; // Afficher le loader
+    currentIndex = 0; // Réinitialiser l’index si nouvelle recherche
+    allPhotos = [];
     
-    
+
     // const url = `http://localhost:3000/api/search?query=${query}&per_page=42`;
-    const url = `https://projet-api-qx7d.onrender.com/api/search?query=${query}&per_page=42`;
+    const url = `https://projet-api-qx7d.onrender.com/api/search?query=${query}&per_page=100`;
 
     
     //`https://api.pexels.com/v1/search?query=${query}&per_page=42`;
@@ -28,7 +34,9 @@ async function fetchImages(query) {
 
         const data = await response.json();
         console.log(data)
-        displayImages(data.photos);
+        allPhotos = data.photos; // Stocke toutes les images
+        displayImages();     // Affiche les premières
+        // displayImages(data.photos);
         
     } catch (error) {
         console.error("Erreur:", error);
@@ -55,9 +63,10 @@ async function fetchImages(query) {
 
 // Afficher les images sur la page
 // function pour afficher les photos en créant une div pour chaque photo puis de l'auteur et le bouton de téléchargement
-function displayImages(photos) {
-    gallery.innerHTML = ''; // Nettoyer la galerie
-    photos.forEach(photo => {
+function displayImages() {
+    // gallery.innerHTML = ''; // Nettoyer la galerie //non sinon les images précédentes seront éffacés à chaque click du bouton plus d'images
+    const nextPhotos = allPhotos.slice(currentIndex, currentIndex + step);
+    nextPhotos.forEach(photo => {
 
           // Création de la carte
         const card = document.createElement('div');
@@ -95,7 +104,19 @@ function displayImages(photos) {
     gallery.appendChild(card);
       
     });
+
+    currentIndex += step;
+
+    if (currentIndex >= allPhotos.length) {
+        document.getElementById("load-more").style.display = "none";
+    } else {
+        document.getElementById("load-more").style.display = "block";
+    }
+
 }
+
+document.getElementById("load-more").addEventListener("click", displayImages);
+
 
 // Gérer l'événement du bouton de l'icon search
 btn.addEventListener('click', () => {
@@ -247,26 +268,30 @@ divBtnDelete.addEventListener("click", () => {
   
 // si le loaclstorage contient une valeur on éffectue la recherche de cette valeur au rechargement de la page sinon on fais la recherche avec la valeur nature et on l'affiche
 window.onload = () => {
-    const savedQuery = JSON.parse(localStorage.getItem('query'));
-    if (savedQuery) {
-      document.getElementById('inputSearch').value = savedQuery; // Remplir le champ avec la requête enregistrée
-      fetchImages(savedQuery); // Afficher les résultats précédents
-    // } else {
-        // fetchDefaultImages();
-    } else {
-        fetchImages("nature")
-    }
-    
-    const savedMobileQuery = JSON.parse(localStorage.getItem('query'));
-    if (savedMobileQuery) {
-      document.getElementById('inputMobileSearch').value = savedMobileQuery; // Remplir le champ avec la requête enregistrée
-      fetchImages(savedMobileQuery); // Afficher les résultats précédents
-    // } else {
-        // fetchDefaultImages();
-    } else {
-        fetchImages("nature")
-    }
-  };
+
+  if(window.innerWidth > 768) {
+      const savedQuery = JSON.parse(localStorage.getItem('query'));
+      if (savedQuery) {
+        document.getElementById('inputSearch').value = savedQuery; // Remplir le champ avec la requête enregistrée
+        fetchImages(savedQuery); // Afficher les résultats précédents
+      // } else {
+          // fetchDefaultImages();
+      } else {
+          fetchImages("nature")
+      }
+  } else {
+
+      const savedMobileQuery = JSON.parse(localStorage.getItem('query'));
+      if (savedMobileQuery) {
+        document.getElementById('inputMobileSearch').value = savedMobileQuery; // Remplir le champ avec la requête enregistrée
+        fetchImages(savedMobileQuery); // Afficher les résultats précédents
+      // } else {
+          // fetchDefaultImages();
+      } else {
+          fetchImages("nature")
+      }
+  }
+};
 
 // gestion du darkmode
 const darkMode = document.getElementById("dark-mode");
@@ -424,19 +449,20 @@ window.onscroll = function() {
 
 
 // authentifiaction google non disponible
-    document.addEventListener("DOMContentLoaded", () => {
-        const savedQuery = localStorage.getItem("query");
+// DomContentLoaded permet de charger avant tous les elements de la page
+    // document.addEventListener("DOMContentLoaded", () => {
+    //     const savedQuery = localStorage.getItem("query");
       
-        // faire la recherche de la valeur précédente enrégistrer dans le local storage sinon excécuter avec la valeur nature
-        if (!savedQuery) {
-          // Première fois : aucune recherche sauvegardée
-          fetchImages("nature"); // ou un thème par défaut que tu veux
-        } else {
-          // Sinon, charger ce que l'utilisateur avait cherché
-          const query = JSON.parse(savedQuery);
-          fetchImages(query);
-        }
-      });
+    //     // faire la recherche de la valeur précédente enrégistrer dans le local storage sinon excécuter avec la valeur nature
+    //     if (!savedQuery) {
+    //       // Première fois : aucune recherche sauvegardée
+    //       fetchImages("nature"); // ou un thème par défaut que tu veux
+    //     } else {
+    //       // Sinon, charger ce que l'utilisateur avait cherché
+    //       const query = JSON.parse(savedQuery);
+    //       fetchImages(query);
+    //     }
+    //   });
       
       console.log('Script chargé'); // pour tester
 
