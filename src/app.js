@@ -20,7 +20,7 @@ async function fetchImages(query) {
     
 
     // const url = `http://localhost:3000/api/search?query=${query}&per_page=42`;
-    const url = `https://projet-api-qx7d.onrender.com/api/search?query=${query}&per_page=100`;
+    const url = `https://CHICO-PIC-qx7d.onrender.com/api/search?query=${query}&per_page=100`;
 
     
     //`https://api.pexels.com/v1/search?query=${query}&per_page=42`;
