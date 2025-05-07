@@ -541,13 +541,23 @@ window.onscroll = function() {
       
       // Envoie de commentaire dans la boite mail
       document.getElementById("sendMail").addEventListener("click", () => {
-        const message = document.getElementById('commentInput').value;
+        const message = document.getElementById('commentInput').value.trim();
         const email = "chicowebdev@gmail.com";
-        const subject = "Message depuis le site";
+        const subject = "Message de votre commentaire";
+
+        // Vérifie que le champ n’est pas vide
+          if (!message) {
+            alert("Veuillez entrer un message.");
+            return;
+          }
+
+          console.log(message)
+
       
-        const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
-        
-        window.location.href = mailtoLink;
+        // const mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+        const mailtoLink = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`
+        // `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(message)}`;
+        window.open(mailtoLink, '_blank');
       })
       
 
